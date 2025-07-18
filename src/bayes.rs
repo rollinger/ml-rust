@@ -81,6 +81,26 @@ impl NaiveBayes {
 		return Some(log_prior + log_likelihood);
 	}
 
+	pub fn classify(&self, token_vec: &Vec<&str>) -> Option<String> {
+		/* classifies a vector of string belonging to a label */
+		let mut best_label: Option<String> = None;
+		let mut best_score = f64::NEG_INFINITY;
+
+		for label in self.class_counts.keys() {
+			match self.score(label, &token_vec) {
+				Some(score) => { 
+					if score > best_score {
+						best_score = score;
+						best_label = Some(label.clone());
+					}
+				},
+				None => (),
+			}
+		}
+
+		return best_label
+	}
+
 	pub fn classification_table(&self, token_vec: &Vec<&str>) -> HashMap<String, f64> {
 		/* Calculates the scores of all labels given the token_vec */
 		let mut table: HashMap<String, f64> = HashMap::new();
@@ -91,34 +111,6 @@ impl NaiveBayes {
 			}
 		}
 		return table;
-	}
-
-	pub fn predict(&self, input: &Vec<&str>) -> Option<String> {
-		/* predict a vector of string belonging to a label */
-		let mut best_label: Option<String> = None;
-		let mut best_score = f64::NEG_INFINITY;
-
-		for label in self.class_counts.keys() {
-			let log_prior = (*self.class_counts.get(label).unwrap_or(&1) as f64).ln();
-			let mut log_likelihood = 0.0;
-
-			for word in input {
-				// calculates the probability of each input word; add to log_likelihood
-				let word_freq = self.word_counts.get(label).and_then(|m| m.get(*word)).unwrap_or(&0);
-				let total = self.total_words.get(label).unwrap_or(&1);
-				let prob = (*word_freq as f64 + 1.0) / (*total as f64 + 1.0);
-				log_likelihood += prob.ln();
-			}
-			
-			// Select better match based on prior + likelihood
-			let score = log_prior + log_likelihood;
-			if score > best_score {
-				best_score = score;
-				best_label = Some(label.clone());
-			}
-		}
-
-		return best_label
 	}
 
 }

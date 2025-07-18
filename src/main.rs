@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 mod bayes;
 use bayes::NaiveBayes;
 
@@ -19,15 +17,13 @@ fn main() {
     //let mut classifier = NaiveBayes::new();
     let mut classifier = NaiveBayes::load_from_file(path).unwrap_or(NaiveBayes::new());
 
-    /*
     classifier.bulk_train(_training_data);
-    */
     
     let test = vec!["meet", "at", "party"];
     let t = classifier.classification_table(&test);
     println!("{t:?}");
     
-    match classifier.predict(&test) {
+    match classifier.classify(&test) {
         Some(label) => println!("Predicted class: {}", label),
         None => println!("Could not classify input."),
     }
