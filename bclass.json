@@ -1,0 +1,38 @@
+{
+  "class_counts": {
+    "social": 1,
+    "ham": 2,
+    "spam": 2
+  },
+  "word_counts": {
+    "social": {
+      "tonight": 1,
+      "invitation": 1,
+      "fun": 1,
+      "party": 1
+    },
+    "ham": {
+      "lunch": 1,
+      "see": 1,
+      "meet": 1,
+      "let's": 1,
+      "at": 1,
+      "the": 1,
+      "for": 1,
+      "you": 1,
+      "party": 1
+    },
+    "spam": {
+      "offer": 1,
+      "pills": 1,
+      "meds": 1,
+      "buy": 1,
+      "cheap": 2
+    }
+  },
+  "total_words": {
+    "spam": 6,
+    "social": 4,
+    "ham": 9
+  }
+}
