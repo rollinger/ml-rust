@@ -1,5 +1,5 @@
 mod bayes;
-use bayes::NaiveBayes;
+use bayes::naive_bayes::NaiveBayes;
 
 fn main() {
     let path = "bclass.json";
