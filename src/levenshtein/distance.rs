@@ -6,7 +6,7 @@ pub fn distance(s1: &str, s2: &str) -> usize {
 pub fn unicode_edit_distance(s1: &str, s2: &str) -> usize {
 	/* 
 	Unicode-wise Levenshtein edit distance. 
-	Returns the number of edits needed to transform s1 to s2.
+	Returns the number of unicode edits needed to transform s1 to s2.
 	*/
 	let mut distance: usize = 0;
 	let mut s1_chars = s1.chars();
@@ -23,6 +23,10 @@ pub fn unicode_edit_distance(s1: &str, s2: &str) -> usize {
 
 
 pub fn byte_edit_distance(s1: &str, s2: &str) -> usize {
+	/*
+	Byte-wise Levenshtein edit distance.
+	Returns the number of byte edits needed to transform s1 to s2.
+	*/
 	let mut distance: usize = 0;
 	let mut s1_bytes = s1.bytes();
 	let mut s2_bytes = s2.bytes();
@@ -33,7 +37,7 @@ pub fn byte_edit_distance(s1: &str, s2: &str) -> usize {
 			distance += 1;
 		}
 	}
-	distance
+	return distance;
 }
 
 #[cfg(test)]
