@@ -9,15 +9,39 @@ pub fn stem(s: &str, unicode: bool) -> HashMap<char, usize> {
 	@return
 	- HashMap of frequency counts.
 	*/
-
-	//let mut freq: Vec<(char, usize)> = Vec::new();
-
 	let mut freq: HashMap<char, usize> = HashMap::new();
 	if unicode {
 		freq = stem_unicode_sequence(s, freq);
 	} else {
 		freq = stem_byte_sequence(s, freq);
 	}
+	return freq;
+}
+
+#[allow(unused)]
+#[allow(unused_mut)]
+pub fn ngram_stem(s: &str, n: u8, unicode: bool) -> HashMap<String, usize> {
+	/* TODO: make the stem use n-grams of characters/bytes for frequency calculation. */
+	let mut freq: HashMap<String, usize> = HashMap::new();
+	todo!("Implement ngram_stem");
+	return freq;
+}
+
+#[allow(unused)]
+#[allow(unused_mut)]
+pub fn word_stem(s: &str, unicode: bool) -> HashMap<String, usize> {
+	/* TODO: make the stem use whitespace as a token delimiter to use for frequency calculation. */
+	let mut freq: HashMap<String, usize> = HashMap::new();
+	todo!("Implement word_stem");
+	return freq;
+}
+
+#[allow(unused)]
+#[allow(unused_mut)]
+pub fn delim_stem(s: &str, delim: Vec<char>, unicode: bool) -> HashMap<String, usize> {
+	/* TODO: use the vector of delimiter for tokenization */
+	let mut freq: HashMap<String, usize> = HashMap::new();
+	todo!("Implement word_stem");
 	return freq;
 }
 
