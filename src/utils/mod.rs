@@ -1,1 +1,1 @@
-pub mod cmp;
+pub mod compare;
