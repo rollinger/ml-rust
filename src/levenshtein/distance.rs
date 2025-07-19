@@ -28,9 +28,7 @@ pub fn byte_edit_distance(s1: &str, s2: &str) -> usize {
 	let mut s2_bytes = s2.bytes();
 	let max_length = s1.len().max(s2.len());
 
-	for idx in 0..max_length {
-		//let b1 = s1_bytes.get(idx).copied();
-		//let b2 = s2_bytes.get(idx).copied();
+	for _ in 0..max_length {
 		if s1_bytes.next() != s2_bytes.next() {
 			distance += 1;
 		}
