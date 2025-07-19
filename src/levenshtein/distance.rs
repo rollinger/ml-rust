@@ -14,14 +14,11 @@ pub fn unicode_edit_distance(s1: &str, s2: &str) -> usize {
 	let max_length = s1.chars().count().max(s2.chars().count());
 
 	for _ in 0..max_length {
-		let c1 = s1_chars.next();
-		let c2 = s2_chars.next();
-		if c1 != c2 {
+		if s1_chars.next() != s2_chars.next() {
 			distance += 1;
 		}
 	}
-
-	distance
+	return distance;
 }
 
 
@@ -85,4 +82,17 @@ mod tests {
 		assert_eq!(a.len(), 12);
     	assert_eq!(b.len(), 6);
 	}
+
+	#[test]
+	fn test_distance_under_different_length() {
+		let a = "abc";
+		let b = "abcxyz";
+		let c = "";
+		assert_eq!(distance(a, b), 3);
+		assert_eq!(distance(b, a), 3);
+		assert_eq!(distance(a, c), 3);
+		assert_eq!(distance(c, a), 3);
+		assert_eq!(distance(c, c), 0);
+	}
+
 }
