@@ -24,14 +24,14 @@ pub fn unicode_edit_distance(s1: &str, s2: &str) -> usize {
 
 pub fn byte_edit_distance(s1: &str, s2: &str) -> usize {
 	let mut distance: usize = 0;
-	let s1_bytes = s1.as_bytes();
-	let s2_bytes = s2.as_bytes();
+	let mut s1_bytes = s1.bytes();
+	let mut s2_bytes = s2.bytes();
 	let max_length = s1.len().max(s2.len());
 
 	for idx in 0..max_length {
-		let b1 = s1_bytes.get(idx).copied();
-		let b2 = s2_bytes.get(idx).copied();
-		if b1 != b2 {
+		//let b1 = s1_bytes.get(idx).copied();
+		//let b2 = s2_bytes.get(idx).copied();
+		if s1_bytes.next() != s2_bytes.next() {
 			distance += 1;
 		}
 	}
