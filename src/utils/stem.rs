@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 pub fn stem(s: &str, unicode: bool) -> HashMap<char, usize> {
-	/* Returns a frequency table of element in the sequence s. 
+	/* Returns a frequency table of elements in the sequence s. 
 	@params
 	- s: the sequence to stem
 	- unicode: treating the elements as unicode (true) or raw bytes (false)
@@ -73,7 +73,7 @@ mod tests {
     fn test_interface() {
 		let s = String::from("aabbbccccd");
 		let freq = stem(&s, true);
-		assert!(!freq.is_empty(), "stem() did not return a HashMap")
+		assert!(!freq.is_empty(), "stem() did not return a HashMap or is not empty.")
 	}
 
 	#[test]
@@ -90,8 +90,8 @@ mod tests {
     fn test_byte_stem() {
 		let s = String::from("äöü");
 		let freq = stem(&s, false);
-		// println!("{freq:#?}");
-		// println!("{:?}", s.as_bytes());
+		println!("{freq:#?}");
+		println!("{:?}", s.as_bytes());
 		assert_eq!(freq.get(&'¶'), Some(&1));
 		assert_eq!(freq.get(&'¼'), Some(&1));
 		assert_eq!(freq.get(&'¤'), Some(&1));
