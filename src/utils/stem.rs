@@ -41,7 +41,7 @@ pub fn word_stem(s: &str, unicode: bool) -> HashMap<String, usize> {
 pub fn delim_stem(s: &str, delim: Vec<char>, unicode: bool) -> HashMap<String, usize> {
 	/* TODO: use the vector of delimiter for tokenization */
 	let mut freq: HashMap<String, usize> = HashMap::new();
-	todo!("Implement word_stem");
+	todo!("Implement delim_stem");
 	return freq;
 }
 
