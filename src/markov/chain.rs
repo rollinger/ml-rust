@@ -1,13 +1,16 @@
-#![allow(dead_code)]
-#![allow(unused_imports)]
-
 use std::collections::HashMap;
 use rand::prelude::*;
+use serde::{Serialize, Deserialize};
 
+use crate::persist::json::JsonPersist;
+
+#[derive(Serialize, Deserialize)]
 struct MarkovChain {
 	chain: HashMap<char, Vec<char>>,
 	start_chars: Vec<char>,
 }
+
+impl JsonPersist for MarkovChain {}
 
 impl MarkovChain {
 	fn new() -> Self {

@@ -1,7 +1,9 @@
 use std::collections::HashMap;
-use serde::{Serialize, Deserialize};
 use std::fs::File;
 use std::io::{BufReader, BufWriter};
+use serde::{Serialize, Deserialize};
+
+use crate::persist::json::JsonPersist;
 
 #[derive(Serialize, Deserialize)]
 pub struct NaiveBayes {
@@ -10,6 +12,8 @@ pub struct NaiveBayes {
 	total_counts: HashMap<String, usize>,
 }
 
+impl JsonPersist for NaiveBayes {}
+
 impl NaiveBayes {
 	pub fn new() -> Self {
 		NaiveBayes {
@@ -17,24 +21,6 @@ impl NaiveBayes {
 			token_counts: HashMap::new(),
 			total_counts: HashMap::new(),
 		}
-	}
-
-	pub fn save_to_file(&self, path: &str, pretty: bool) -> std::io::Result<()> {
-		let file = File::create(path)?;
-		let writer = BufWriter::new(file);
-		if pretty {
-			serde_json::to_writer_pretty(writer, self)?;
-		} else {
-			serde_json::to_writer(writer, self)?;
-		}
-		return Ok(());
-	}
-
-	pub fn load_from_file(path: &str) -> std::io::Result<Self> {
-		let file = File::open(path)?;
-		let reader = BufReader::new(file);
-		let nb = serde_json::from_reader(reader)?;
-		return Ok(nb);
 	}
 
 	pub fn train(&mut self, label: String, token_vec: Vec<&str>) {

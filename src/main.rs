@@ -1,5 +1,5 @@
-mod bayes;
-use bayes::naive_bayes::NaiveBayes;
+use ml_rust::bayes::naive_bayes::NaiveBayes;
+use ml_rust::persist::json::JsonPersist;
 
 fn main() {
     let path = "bclass.json";
