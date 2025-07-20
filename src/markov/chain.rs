@@ -39,7 +39,7 @@ impl MarkovChain {
 			return output;
 		}
 
-		// Set the start as the current
+		// Set the start as the current output position
 		let mut current = start;
 		output.push(current);
 
@@ -60,7 +60,6 @@ impl MarkovChain {
 
 	fn generate_from_rand(&self, length: usize) -> String {
 		/* Generates a sequence from a random start char of length */
-		//let mut rng = thread_rng();
 		let random_start = *self.start_chars.choose(&mut thread_rng()).unwrap();
 		return self.generate(random_start, length);
 	}
