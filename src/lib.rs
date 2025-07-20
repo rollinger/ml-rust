@@ -3,3 +3,4 @@ pub mod persist;
 pub mod levenshtein;
 pub mod bayes;
 pub mod markov;
+pub mod nnet;

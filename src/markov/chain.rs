@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::collections::HashMap;
 use rand::prelude::*;
 use serde::{Serialize, Deserialize};
@@ -13,14 +15,14 @@ struct MarkovChain {
 impl JsonPersist for MarkovChain {}
 
 impl MarkovChain {
-	fn new() -> Self {
+	pub fn new() -> Self {
 		MarkovChain {
 			chain: HashMap::new(),
 			start_chars: Vec::new(),
 		}
 	}
 
-	fn train(&mut self, input: &str) {
+	pub fn train(&mut self, input: &str) {
 		/* Trains the chain on the input chars, considering a 2-char window at a time. */
 		let chars: Vec<char> = input.chars().collect();
 		if let Some(&first) = chars.first() {
@@ -33,7 +35,7 @@ impl MarkovChain {
 		}
 	}
 
-	fn generate(&self, start: char, length: usize) -> String {
+	pub fn generate(&self, start: char, length: usize) -> String {
 		/*  */
 		let mut rng = thread_rng();
 		let mut output = String::new();
@@ -56,12 +58,12 @@ impl MarkovChain {
 		return output;
 	}
 
-	fn generate_from(&self, from: char, length: usize) -> String {
+	pub fn generate_from(&self, from: char, length: usize) -> String {
 		/* Generates a sequence from char of length */
 		return self.generate(from, length);
 	}
 
-	fn generate_from_rand(&self, length: usize) -> String {
+	pub fn generate_from_rand(&self, length: usize) -> String {
 		/* Generates a sequence from a random start char of length */
 		let random_start = *self.start_chars.choose(&mut thread_rng()).unwrap();
 		return self.generate(random_start, length);
