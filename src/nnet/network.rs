@@ -27,4 +27,16 @@ impl NeuralNetwork {
 		}
 		return inputs;
 	}
+
+	pub fn input_size(&self) -> usize {
+		todo!("Implement introspection in the nn input dimension")
+	}
+
+	pub fn output_size(&self) -> usize {
+		todo!("Implement introspection in the nn output dimension")
+	}
+
+	pub fn hidden_layers_size(&self) -> usize {
+		todo!("Implement introspection in the number of hiden layers")
+	}
 }
