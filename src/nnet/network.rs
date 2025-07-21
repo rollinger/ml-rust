@@ -1,11 +1,17 @@
-use super::layer::Layer;
 use rand::Rng;
+use serde::{Serialize, Deserialize};
 
-pub struct NeuronalNetwork {
+use crate::persist::json::JsonPersist;
+use super::layer::Layer;
+
+#[derive(Serialize, Deserialize)]
+pub struct NeuralNetwork {
 	layers: Vec<Layer>,
 }
 
-impl NeuronalNetwork {
+impl JsonPersist for NeuralNetwork {}
+
+impl NeuralNetwork {
 	pub fn new(sizes: &[usize]) -> Self {
 		let mut layers = Vec::new();
 		let mut rng = rand::thread_rng();

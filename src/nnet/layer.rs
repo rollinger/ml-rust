@@ -1,5 +1,8 @@
 use super::neuron::Neuron;
 
+use serde::{Serialize, Deserialize};
+
+#[derive(Serialize, Deserialize)]
 pub struct Layer {
 	neurons: Vec<Neuron>
 }

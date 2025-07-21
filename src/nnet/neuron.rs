@@ -1,5 +1,7 @@
 use super::utils::{sigmoid, dot};
+use serde::{Serialize, Deserialize};
 
+#[derive(Serialize, Deserialize)]
 pub struct Neuron {
 	weights: Vec<f64>,
 	bias: f64,
