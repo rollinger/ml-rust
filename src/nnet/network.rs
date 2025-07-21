@@ -1,4 +1,5 @@
 use super::layer::Layer;
+use rand::Rng;
 
 pub struct NeuronalNetwork {
 	layers: Vec<Layer>,
@@ -7,8 +8,9 @@ pub struct NeuronalNetwork {
 impl NeuronalNetwork {
 	pub fn new(sizes: &[usize]) -> Self {
 		let mut layers = Vec::new();
+		let mut rng = rand::thread_rng();
 		for w in sizes.windows(2) {
-			layers.push(Layer::new(w[1],w[0]));
+			layers.push(Layer::new(w[1], w[0], || rng.gen_range(-1.0..1.0)));
 		}
 		return Self { layers };
 	}
