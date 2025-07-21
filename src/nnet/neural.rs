@@ -46,21 +46,23 @@ impl Layer {
 }
 
 struct NeuronalNetwork {
-	hidden: Layer,
-	output: Neuron,
+	layers: Vec<Layer>,
 }
 
 impl NeuronalNetwork {
-	fn new(input_size: usize, hidden_size: usize) -> Self {
-		return Self {
-			hidden: Layer::new(hidden_size, input_size),
-			output: Neuron::new(hidden_size),
+	fn new(sizes: &[usize]) -> Self {
+		let mut layers = Vec::new();
+		for w in sizes.windows(2) {
+			layers.push(Layer::new(w[1],w[0]));
 		}
+		return Self { layers };
 	}
 
-	fn predict(&self, inputs: &[f64]) -> f64 {
-		let hidden_out = self.hidden.forward(inputs);
-		return self.output.activate(&hidden_out);
+	fn predict(&self, mut inputs: Vec<f64>) -> Vec<f64> {
+		for layer in &self.layers {
+			inputs = layer.forward(&inputs);
+		}
+		return inputs;
 	}
 }
 
@@ -71,9 +73,10 @@ mod tests {
 
 	#[test]
 	fn test_nnet() {
-		let nn = NeuronalNetwork::new(2,4);
+		// 2 input, 1 hidden layer of 4, 1 output layer of 3 neurons
+		let nn = NeuronalNetwork::new(&[2, 4, 3]);
 		let input = vec![0.5,-0.2];
-		let output = nn.predict(&input);
-		println!("Prediction: {:.4}", output);
+		let output = nn.predict(input);
+		println!("Prediction: {:?}", output);
 	}
 }
