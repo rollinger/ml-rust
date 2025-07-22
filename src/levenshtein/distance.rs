@@ -117,4 +117,18 @@ mod tests {
 		assert_eq!(distance(c, c), 0);
 	}
 
+	#[test]
+	fn test_count_edits_engine() {
+		assert_eq!(count_edits("ab😊".chars(), "ab😊".chars(), 3), 0);
+		assert_eq!(count_edits("ab😊".bytes(), "ab😊".bytes(), 3), 0);
+		assert_eq!(
+			count_edits(vec!["abc","def","ghi"].iter(), vec!["abc","def","ghi"].iter(), 3), 0
+		);
+		let v1 = vec![1,2,3,4,5];
+		let v2 = vec![1,2,3,10,20];
+		assert_eq!(count_edits(v1.iter(), v2.iter(), 3), 0);
+		assert_eq!(count_edits(v1.iter(), v2.iter(), 5), 2);
+
+	}
+
 }
