@@ -3,6 +3,11 @@ use std::fs::File;
 use std::io::{BufReader, BufWriter, Result};
 
 pub trait JsonPersist: Serialize + DeserializeOwned + Sized {
+	/*
+	Json persistance of struct fields.
+
+	Note persisting f64 to json may entail small rounding differences.
+	*/
 	fn save_to_file(&self, path: &str, pretty:bool) -> Result<()> {
 		let file = File::create(path)?;
 		let writer = BufWriter::new(file);

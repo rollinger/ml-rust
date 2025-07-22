@@ -3,7 +3,19 @@ pub fn sigmoid(x: f64) -> f64 {
 	return 1.0/(1.0 + (-x).exp());
 }
 
+pub fn sigmoid_derivative(x: f64) -> f64 {
+	let s = sigmoid(x);
+	return s * (1.0 - s);
+}
+
 pub fn dot(v1: &[f64], v2: &[f64]) -> f64 {
 	/* Dot Product of two vectors fo f64 */
 	return v1.iter().zip(v2.iter()).map(|(a,b)| a * b).sum();
+}
+
+pub fn approx_eq(a:f64, b:f64, epsilon:f64) -> bool {
+	/* Returns true if the absolute difference of a and be is smaller than epsilon
+	Epsilon = 1e-10 is a good value to start.
+	 */
+	return (a-b).abs() < epsilon;
 }
