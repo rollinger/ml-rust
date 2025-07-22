@@ -1,8 +1,7 @@
-#![allow(dead_code)]
-use crate::persist::json::JsonPersist;
-use crate::utils::compare;
-use std::path::Path;
-use std::fs;
+/**
+ * nnet Module
+ * Implements NeuralNetwork publicly available.
+ */
 
 mod utils;
 mod neuron;
@@ -12,6 +11,10 @@ pub mod network;
 #[cfg(test)]
 mod tests {
 	use super::*;
+	use crate::persist::json::JsonPersist;
+	use crate::utils::compare;
+	use std::path::Path;
+	use std::fs;
 
 	#[test]
 	fn test_nnet() {

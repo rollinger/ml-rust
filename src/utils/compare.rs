@@ -37,5 +37,16 @@ mod tests {
 	#[test]
 	fn test_approx_eq() {
 		assert_eq!(approx_eq(1.0, 1.1, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.01, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.001, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.0001, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.00001, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.000001, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.0000001, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.00000001, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.000000001, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.0000000001, 1e-10), false);
+		assert_eq!(approx_eq(1.0, 1.00000000001, 1e-10), true);
+
 	}
 }
