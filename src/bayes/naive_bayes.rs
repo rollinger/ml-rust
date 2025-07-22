@@ -81,8 +81,7 @@ impl NaiveBayes {
 				None => (),
 			}
 		}
-
-		return best_label
+		return best_label;
 	}
 
 	pub fn classification_table(&self, token_vec: &Vec<&str>) -> HashMap<String, f64> {
