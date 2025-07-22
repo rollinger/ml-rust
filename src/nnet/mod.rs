@@ -1,11 +1,12 @@
 #![allow(dead_code)]
 use crate::persist::json::JsonPersist;
+use crate::utils::compare;
 use std::path::Path;
 use std::fs;
 
-pub mod utils;
-pub mod neuron;
-pub mod layer;
+mod utils;
+mod neuron;
+mod layer;
 pub mod network;
 
 #[cfg(test)]
@@ -37,9 +38,9 @@ mod tests {
 		for (layer1, layer2) in nn1.layers.iter().zip(nn2.layers.iter()) {
 			for (n1, n2) in layer1.neurons.iter().zip(layer2.neurons.iter()) {
 				for (w1, w2) in n1.weights.iter().zip(n2.weights.iter()) {
-					assert!(utils::approx_eq(*w1, *w2, 1e-10), "Weights differ: {} != {}", w1, w2);
+					assert!(compare::approx_eq(*w1, *w2, 1e-10), "Weights differ: {} != {}", w1, w2);
 				}
-				assert!(utils::approx_eq(n1.bias, n2.bias, 1e-10), "Biases differ: {} != {}", n1.bias, n2.bias);
+				assert!(compare::approx_eq(n1.bias, n2.bias, 1e-10), "Biases differ: {} != {}", n1.bias, n2.bias);
 			}
 		}
 		// delete file

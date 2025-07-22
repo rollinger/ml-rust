@@ -1,5 +1,6 @@
 use ml_rust::bayes::naive_bayes::NaiveBayes;
 use ml_rust::persist::json::JsonPersist;
+use ml_rust::nnet;
 
 fn main() {
     let path = "bclass.json";
@@ -32,4 +33,5 @@ fn main() {
         Ok(_) => println!("Saved."),
         Err(e) => eprintln!("Error: {}", e),
     }
+
 }
