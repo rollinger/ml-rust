@@ -1,3 +1,3 @@
 pub mod compare;
-pub mod stem;
 pub mod token;
+pub mod stem;

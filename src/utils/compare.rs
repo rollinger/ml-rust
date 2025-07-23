@@ -7,10 +7,10 @@ pub fn min(a: isize, b:isize) -> isize {
 }
 
 pub fn approx_eq(a:f64, b:f64, epsilon:f64) -> bool {
-	/* Returns true if the absolute difference of a and be is smaller than epsilon
+	/* Returns true if the absolute difference of a and b is smaller than epsilon
 	Epsilon = 1e-10 is a good value to start.
 	 */
-	return (a-b).abs() < epsilon;
+	return (a-b).abs() < epsilon.abs();
 }
 
 
@@ -47,6 +47,7 @@ mod tests {
 		assert_eq!(approx_eq(1.0, 1.000000001, 1e-10), false);
 		assert_eq!(approx_eq(1.0, 1.0000000001, 1e-10), false);
 		assert_eq!(approx_eq(1.0, 1.00000000001, 1e-10), true);
+		assert_eq!(approx_eq(1.0, 1.00000000009, 1e-10), true);
 
 	}
 }
