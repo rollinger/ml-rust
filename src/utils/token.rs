@@ -15,16 +15,16 @@ pub fn explode_usd(sequence: &str, delim: &str, include: bool) -> Vec<String> {
 	todo!("Implement sequence explode by delimiter")
 }
 
-#[cfg(tests)]
+#[cfg(test)]
 mod tests {
 	use super::*;
 
 	#[test]
 	fn test_explode_usn() {
 		let text = "abcdefg";
-		let chunks = explode_usn(text, 2);
-		println!("{:?}", chunks);
-		assert_eq!(chunks.len(), 4);
+		assert_eq!(explode_usn(text, 2).len(), 4);
+		assert_eq!(explode_usn(text, 3).len(), 3);
+		assert_eq!(explode_usn(text, 4).len(), 2);
 	}
 
 	#[test]
